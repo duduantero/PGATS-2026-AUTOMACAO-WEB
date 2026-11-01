@@ -1,46 +1,51 @@
-# pgats-automacao-web-2026
+# Trabalho de Conclusão — Automação Web (Automation Exercise)
 
-Projeto de prática de automação de testes web com [Cypress](https://www.cypress.io/), a biblioteca `cypress-xpath` e [Faker](https://fakerjs.dev/), desenvolvido como parte dos exercícios da pós-graduação em Automação de Testes de Software.
+Projeto de automação de testes E2E desenvolvido para a aplicação [Automation Exercise](https://automationexercise.com), cobrindo os cenários solicitados no Trabalho de Conclusão da Pós-Graduação em Automação de Testes de Software.
 
-## Exercícios
+---
 
-1. **Cenários de teste:** implementar casos de cadastro, autenticação, catálogo, pesquisa, inscrição e compra no Automation Exercise. O spec modularizado cobre os casos de testes do 01 ao 05, 08 ao 10, 15 e 16.
-2. **Correção de testes:** analisar e corrigir testes com problemas de sintaxe, funcionalidade e seletores. O exercício de referência está no [Gist](https://gist.github.com/samlucax/0df852881249b561cdf8888493b03125).
-3. **Seletores XPath:** instalar e experimentar `cypress-xpath`, adaptando seletores e observando legibilidade e velocidade de execução.
-4. **Teste de janela e drag-and-drop:** validar cenários de múltiplas janelas e operações de arrastar e soltar no site The Internet.
+## Escopo dos Casos de Teste
 
-Os exercícios são voltados à prática e à fixação dos conceitos vistos em aula.
+A suíte cobre os casos de teste especificados na página **Test Cases** da aplicação:
 
-## Sites testados
+| Caso | Funcionalidade | Descrição do Cenário |
+| :---: | :--- | :--- |
+| **01** | Autenticação | Registrar novo usuário com sucesso |
+| **02** | Autenticação | Login de usuário com e-mail e senha corretos |
+| **03** | Autenticação | Login de usuário com credenciais incorretas |
+| **04** | Autenticação | Logout de usuário autenticado |
+| **05** | Autenticação | Registrar usuário com e-mail já existente |
+| **08** | Catálogo | Verificar todos os produtos e página de detalhes |
+| **09** | Busca | Pesquisar produto e validar listagem |
+| **10** | Inscrição | Verificar inscrição na newsletter no rodapé |
+| **15** | Checkout | Realizar pedido: Registrar antes do checkout |
+| **16** | Checkout | Realizar pedido: Fazer login antes do checkout |
 
-- [Automation Exercise](https://www.automationexercise.com): cenários de cadastro, autenticação, catálogo, pesquisa, inscrição e compra.
-- [DevFinance](https://devfinance-agilizei.netlify.app): testes de cadastro de transações.
-- [The Internet (HerokuApp)](https://the-internet.herokuapp.com): testes de múltiplas janelas e drag-and-drop.
+---
 
-O Faker gera dados aleatórios, como nomes e e-mails, para reduzir conflitos entre execuções dos testes.
+## Tecnologias e Padrões Adotados
 
-## GitHub Actions
+- **Framework:** [Cypress](https://www.cypress.io/)
+- **Massa de Dados Dinâmica:** [@faker-js/faker](https://fakerjs.dev/) para evitar duplicidade de cadastros entre execuções.
+- **Padrão de Arquitetura:** Page Objects / Commands modulares desacoplando ações, asserções e seletores.
+- **Seletores:** Priorização de atributos semânticos e dedicados a teste (`data-qa`).
+- **Resiliência e Performance:** Bloqueio de requisições de anúncios (`blockHosts`) para prevenir lentidão e falhas no pipeline.
+- **Relatórios:** Mochawesome Reporter com consolidação em HTML, screenshots e vídeos de falhas.
 
-O workflow de testes E2E está em `.github/workflows/teste.yml` e é iniciado manualmente ou atráves de pull request:
-
-1. Abra a aba **Actions** do repositório.
-2. Selecione **Web E2E Tests**.
-3. Clique em **Run workflow** e confirme a branch.
-
-Ao final da execução, o artefato `relatorios` contém os relatórios, screenshots e vídeos gerados, quando disponíveis. Baixe-o na página da execução do workflow.
+---
 
 ## Pré-requisitos
 
-- [Node.js](https://nodejs.org/)
-- [Npm](https://docs.npmjs.com/cli/v9/commands/npm-install)
-  
-## Instalação
+- [Node.js](https://nodejs.org/) (versão 18 ou superior)
+- [npm](https://docs.npmjs.com/)
 
-Na pasta do projeto, instale as dependências:
+---
 
-```bash
-npm install
-```
+## Instalação e Execução Local
+
+1. Instale as dependências:
+   ```bash
+   npm install
 
 ## Executar os testes
 
@@ -63,5 +68,3 @@ Executar uma spec específica em modo headless:
 ```bash
 npx cypress run --spec "cypress/e2e/automation-exercise-modules.cy.js"
 ```
-
-
